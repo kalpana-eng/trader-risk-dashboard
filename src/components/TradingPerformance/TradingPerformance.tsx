@@ -10,95 +10,125 @@ import { useDashboardData } from "../../hooks/useDashboardData";
 function TradingPerformance() {
   const data = useDashboardData();
 
+  const cards = [
+    {
+      title: "Winning Trades",
+      value: data.winningTrades,
+      subtitle: "Profitable Positions",
+      icon: TrendingUp,
+      iconColor: "text-green-500",
+      valueColor: "text-green-500",
+    },
+    {
+      title: "Losing Trades",
+      value: data.losingTrades,
+      subtitle: "Loss Making Positions",
+      icon: TrendingDown,
+      iconColor: "text-red-500",
+      valueColor: "text-red-500",
+    },
+    {
+      title: "Largest Winner",
+      value: `$${data.largestWinner?.pnl.toLocaleString() ?? 0}`,
+      subtitle: `${data.largestWinner?.asset ?? "-"} • ${
+        data.largestWinner?.direction ?? "-"
+      }`,
+      icon: Trophy,
+      iconColor: "text-emerald-500",
+      valueColor: "text-emerald-500",
+    },
+    {
+      title: "Largest Loser",
+      value: `$${Math.abs(
+        data.largestLoser?.pnl ?? 0
+      ).toLocaleString()}`,
+      subtitle: `${data.largestLoser?.asset ?? "-"} • ${
+        data.largestLoser?.direction ?? "-"
+      }`,
+      icon: CircleX,
+      iconColor: "text-rose-500",
+      valueColor: "text-rose-500",
+    },
+    {
+      title: "Average Winning Trade",
+      value: `$${data.averageWinningTrade.toLocaleString()}`,
+      subtitle: "Average Profit",
+      icon: TrendingUp,
+      iconColor: "text-green-500",
+      valueColor: "text-green-500",
+    },
+    {
+      title: "Average Losing Trade",
+      value: `$${Math.abs(
+        data.averageLosingTrade
+      ).toLocaleString()}`,
+      subtitle: "Average Loss",
+      icon: TrendingDown,
+      iconColor: "text-red-500",
+      valueColor: "text-red-500",
+    },
+  ];
+
   return (
-    <section className="mt-8 rounded-2xl border border-slate-700 bg-slate-900 p-6">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold">
+    <section className="mt-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-colors dark:border-slate-700 dark:bg-slate-900">
+
+      {/* Heading */}
+
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
           Trading Performance
         </h2>
 
-        <p className="text-slate-400">
+        <p className="mt-1 text-slate-500 dark:text-slate-400">
           Key statistics from all completed trades.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {/* Cards */}
 
-        {/* Winning Trades */}
-        <div className="rounded-xl bg-slate-800 p-5">
-          <TrendingUp className="mb-3 text-green-400" />
-          <p className="text-slate-400">Winning Trades</p>
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 
-          <h3 className="mt-2 text-3xl font-bold">
-            {data.winningTrades}
-          </h3>
-        </div>
+        {cards.map((card) => {
+          const Icon = card.icon;
 
-        {/* Losing Trades */}
-        <div className="rounded-xl bg-slate-800 p-5">
-          <TrendingDown className="mb-3 text-red-400" />
-          <p className="text-slate-400">Losing Trades</p>
+          return (
+            <div
+              key={card.title}
+              className="group rounded-2xl border border-slate-200 bg-slate-50 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-slate-700 dark:bg-slate-800"
+            >
+              <div className="flex items-center justify-between">
 
-          <h3 className="mt-2 text-3xl font-bold">
-            {data.losingTrades}
-          </h3>
-        </div>
+                <div>
 
-        {/* Largest Winner */}
-        <div className="rounded-xl bg-slate-800 p-5">
-          <Trophy className="mb-3 text-green-400" />
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
+                    {card.title}
+                  </p>
 
-          <p className="text-slate-400">
-            Largest Winner
-          </p>
+                  <h3
+                    className={`mt-4 text-3xl font-bold ${card.valueColor}`}
+                  >
+                    {card.value}
+                  </h3>
 
-          <h3 className="mt-2 text-2xl font-bold text-green-400">
-            ${data.largestWinner?.pnl ?? 0}
-          </h3>
+                  <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                    {card.subtitle}
+                  </p>
 
-          <p className="mt-2 text-sm text-slate-500">
-            {data.largestWinner?.asset} {data.largestWinner?.direction}
-          </p>
-        </div>
+                </div>
 
-        {/* Largest Loser */}
-        <div className="rounded-xl bg-slate-800 p-5">
-          <CircleX className="mb-3 text-red-400" />
+                <div className="rounded-xl bg-slate-200 p-3 dark:bg-slate-700">
 
-          <p className="text-slate-400">
-            Largest Loser
-          </p>
+                  <Icon
+                    size={26}
+                    className={card.iconColor}
+                  />
 
-          <h3 className="mt-2 text-2xl font-bold text-red-400">
-            ${data.largestLoser?.pnl ?? 0}
-          </h3>
+                </div>
 
-          <p className="mt-2 text-sm text-slate-500">
-            {data.largestLoser?.asset} {data.largestLoser?.direction}
-          </p>
-        </div>
-
-        {/* Average Winner */}
-        <div className="rounded-xl bg-slate-800 p-5">
-          <p className="text-slate-400">
-            Average Winning Trade
-          </p>
-
-          <h3 className="mt-2 text-3xl font-bold text-green-400">
-            ${data.averageWinningTrade}
-          </h3>
-        </div>
-
-        {/* Average Loser */}
-        <div className="rounded-xl bg-slate-800 p-5">
-          <p className="text-slate-400">
-            Average Losing Trade
-          </p>
-
-          <h3 className="mt-2 text-3xl font-bold text-red-400">
-            ${data.averageLosingTrade}
-          </h3>
-        </div>
+              </div>
+            </div>
+          );
+        })}
 
       </div>
     </section>
