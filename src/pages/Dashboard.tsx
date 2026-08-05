@@ -1,5 +1,9 @@
 import Header from "../components/Header/Header";
 import AccountOverview from "../components/AccountOverview/AccountOverview";
+import OverviewCards from "../components/OverviewCards/OverviewCards";
+import RisMonitor from "../components/RiskMonitor/RiskMonitor"
+import TradingPerformance from "../components/TradingPerformance/TradingPerformance";
+import TradeTable from "../components/TradeTable/TradeTable";
 
 function Dashboard() {
   return (
@@ -9,7 +13,25 @@ function Dashboard() {
 
         <Header />
 
-        <AccountOverview />
+        <div className="mt-8">
+          <OverviewCards />
+        </div>
+
+        <div>
+          <AccountOverview />
+        </div>
+
+        <div className="mt-8">
+          <RisMonitor />
+        </div>
+
+        <div className="mt-8">
+          <TradingPerformance />
+        </div>
+
+        <div className="mt-8">
+          <TradeTable />
+        </div>
 
       </div>
 

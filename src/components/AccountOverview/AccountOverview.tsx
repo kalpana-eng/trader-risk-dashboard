@@ -1,56 +1,73 @@
-import OverviewCard from "../OverviewCard/OverViewCard";
+import { Wallet, DollarSign, ShieldAlert, AlertTriangle } from "lucide-react";
+import { account } from "../../data/mockData";
 import { useDashboardData } from "../../hooks/useDashboardData";
 
-function AccountOverview() {
+export default function AccountOverview() {
   const data = useDashboardData();
 
-  return (
-    <section className="space-y-6">
+  const cards = [
+    {
+      title: "Starting Balance",
+      value: `$${account.startingBalance.toLocaleString()}`,
+      icon: Wallet,
+      color: "text-blue-400",
+    },
+    {
+      title: "Current Balance",
+      value: `$${data.currentBalance.toLocaleString()}`,
+      icon: DollarSign,
+      color: "text-green-400",
+    },
+    {
+      title: "Maximum Drawdown",
+      value: `$${account.maximumDrawdown.toLocaleString()}`,
+      icon: ShieldAlert,
+      color: "text-orange-400",
+    },
+    {
+      title: "Daily Loss Limit",
+      value: `$${account.dailyLossLimit.toLocaleString()}`,
+      icon: AlertTriangle,
+      color: "text-red-400",
+    },
+  ];
 
-      <div>
+  return (
+    <section className="mt-12">
+      <div className="mb-6">
         <h2 className="text-2xl font-bold text-white">
           Account Overview
         </h2>
 
-        <p className="mt-1 text-slate-400">
-          Get a quick summary of your account health and performance.
+        <p className="text-gray-400">
+          Account rules and current account status.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {cards.map((card) => {
+          const Icon = card.icon;
 
-        <OverviewCard
-          title="Current Balance"
-          value={`$${data.currentBalance.toLocaleString()}`}
-          subtitle="Live Account Equity"
-          positive
-        />
+          return (
+            <div
+              key={card.title}
+              className="rounded-2xl border border-slate-700 bg-slate-900 p-6 shadow-lg transition-all duration-300 hover:border-indigo-500 hover:shadow-indigo-500/20"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-gray-400">
+                  {card.title}
+                </span>
 
-        <OverviewCard
-          title="Total P&L"
-          value={`+$${data.totalPnL.toLocaleString()}`}
-          subtitle="Across All Trades"
-          positive={data.totalPnL > 0}
-        />
+                <Icon className={`h-6 w-6 ${card.color}`} />
+              </div>
 
-        <OverviewCard
-          title="Win Rate"
-          value={`${data.winRate}%`}
-          subtitle={`${data.winningTrades} Winning Trades`}
-          positive
-        />
-
-        <OverviewCard
-          title="Risk Status"
-          value={data.riskStatus}
-          subtitle="Current Account Health"
-          positive={data.riskStatus === "Safe"}
-        />
-
+              <h3 className="mt-5 text-3xl font-bold text-white">
+                {card.value}
+              </h3>
+            </div>
+          );
+        })}
       </div>
-
     </section>
   );
 }
-
-export default AccountOverview;

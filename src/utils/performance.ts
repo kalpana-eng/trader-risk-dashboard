@@ -48,3 +48,35 @@ export const calculateLargestLosingTrade = (
       trades.filter((trade) => trade.pnl < 0)[0]
     );
 };
+
+/* AverageWinning Trade */
+export const calculateAverageWinningTrade = (
+  trades: Trade[]
+): number => {
+  const winners = trades.filter((trade) => trade.pnl > 0);
+
+  if (!winners.length) return 0;
+
+  return Number(
+    (
+      winners.reduce((sum, trade) => sum + trade.pnl, 0) /
+      winners.length
+    ).toFixed(2)
+  );
+};
+
+export const calculateAverageLosingTrade = (
+  trades: Trade[]
+): number => {
+  const losers = trades.filter((trade) => trade.pnl < 0);
+
+  if (!losers.length) return 0;
+
+  return Number(
+    (
+      Math.abs(
+        losers.reduce((sum, trade) => sum + trade.pnl, 0)
+      ) / losers.length
+    ).toFixed(2)
+  );
+};

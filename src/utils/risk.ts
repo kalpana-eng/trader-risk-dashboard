@@ -1,21 +1,25 @@
 import type { Trade } from "../types/trade";
 import type { Account } from "../types/account";
-import { calculateTotalPnL } from "./performance";
+import { calculateCurrentBalance } from "./performance";
 
 /**
  * Current Drawdown
  */
+/*import { calculateCurrentBalance, calculateTotalPnL } from "./performance";*/
+
 export const calculateCurrentDrawdown = (
   account: Account,
   trades: Trade[]
 ): number => {
-  const pnl = calculateTotalPnL(trades);
+  const currentBalance = calculateCurrentBalance(
+    account.startingBalance,
+    trades
+  );
 
-  if (pnl >= 0) return 0;
+  const drawdown = account.startingBalance - currentBalance;
 
-  return Math.abs(pnl);
+  return Math.max(0, drawdown);
 };
-
 /**
  * Remaining Drawdown
  */

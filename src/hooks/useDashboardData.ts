@@ -9,6 +9,13 @@ import {
   calculateLosingTrades,
   calculateLargestWinningTrade,
   calculateLargestLosingTrade,
+  calculateCurrentDrawdown,
+  calculateRemainingDrawdown,
+  calculateCurrentDayLoss,
+  calculateRemainingDailyLoss,
+  calculateRiskScore,
+  calculateAverageWinningTrade,
+  calculateAverageLosingTrade,
 } from "../utils";
 
 export function useDashboardData() {
@@ -31,6 +38,20 @@ export function useDashboardData() {
     largestWinner: calculateLargestWinningTrade(trades),
 
     largestLoser: calculateLargestLosingTrade(trades),
+
+    currentDrawdown: calculateCurrentDrawdown(account, trades),
+
+    remainingDrawdown: calculateRemainingDrawdown(account, trades),
+
+    currentDayLoss: calculateCurrentDayLoss(trades),
+
+    remainingDailyLoss: calculateRemainingDailyLoss(account, trades),
+
+    riskScore: calculateRiskScore(account, trades),
+
+    averageWinningTrade: calculateAverageWinningTrade(trades),
+
+    averageLosingTrade: calculateAverageLosingTrade(trades),
 
   };
 }
