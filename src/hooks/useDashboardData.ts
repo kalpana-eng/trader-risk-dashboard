@@ -5,6 +5,10 @@ import {
   calculateTotalPnL,
   calculateWinRate,
   calculateRiskStatus,
+  calculateWinningTrades,
+  calculateLosingTrades,
+  calculateLargestWinningTrade,
+  calculateLargestLosingTrade,
 } from "../utils";
 
 export function useDashboardData() {
@@ -19,5 +23,14 @@ export function useDashboardData() {
     winRate: calculateWinRate(trades),
 
     riskStatus: calculateRiskStatus(account, trades),
+
+    winningTrades: calculateWinningTrades(trades),
+
+    losingTrades: calculateLosingTrades(trades),
+
+    largestWinner: calculateLargestWinningTrade(trades),
+
+    largestLoser: calculateLargestLosingTrade(trades),
+
   };
 }
