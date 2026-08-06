@@ -4,15 +4,20 @@ A responsive trading dashborad built with React and TypeScript that helps trader
 
 The dashboard calculates all metrics directly from the trade data instead of relying on the hardcoded values, making it easy to update and extend with new trades.
 
+All trading metrics are calculated dynamically from the provided trade dataset. No calculated values are hardcoded.
+
 # Live Demo #
 https://trader-risk-dashboard-five.vercel.app/
 
 # Features #
 
+- Fully responsive layout
+- Optimized for desktop, tablet and mobile devices
+
 ## Account Overview #
 
 - Starting Balance
-- Current BValance
+- Current Balance
 - Maximum Drawdown
 - Daily Loss Limit
 
@@ -23,7 +28,7 @@ The dashboard automatically calculates:
 - Current Balance
 - Total Profit & Loss
 - Winning Trades
-- Lossing Trades
+- Losing Trades
 - Win Rate
 - Largest Winning Trade
 - Largest Losing Trade
@@ -53,10 +58,10 @@ A bar chart compares:
 
 - Winning Trades
 - Losing Trades
-- Average Winning Trdae
-- Average Losing Trades
+- Average Winning Trade
+- Average Losing Trade
 
-This provides a quick visual camparison of trading performance.
+This provides a quick visual comparison of trading performance.
 
 # Trade History #
  The trade table includes:
@@ -70,13 +75,15 @@ This provides a quick visual camparison of trading performance.
 
  The additional feature I chose was a **Scenario Simulator**.
 
- Instead of only reviewing Previous trades, traders can simulate the profit  or loss of thier next trade and instantly see how it affects:
+ Instead of only reviewing Previous trades, traders can simulate the profit  or loss of their next trade and instantly see how it affects:
 
- - Account Balanace
+ - Account Balance
  - Risk Score
  - Risk Status
 
- I chose this becuase traders often make decision based on future risk rather than historical performance. This features allows them to evaluate potential outcomes before placing another trade.
+ I chose this because traders often make decision based on future risk rather than historical performance. This features allows them to evaluate potential outcomes before placing another trade.
+
+ ***The application follows a component-based architecture with reusable UI components and custom hooks for calculations and state management.***
 
  # Tech Stack #
 
@@ -87,6 +94,8 @@ This provides a quick visual camparison of trading performance.
  -Recharts
  -Framer motion
  -Lucide React
+
+ ***Mock trading data is used to simulate account performance and risk calculations.***
 
  # Project Structure #
 
@@ -119,23 +128,23 @@ This provides a quick visual camparison of trading performance.
 
 # How To RUN #
 
-Clone The reporsitory
+Clone The repository
 
 '''bash
 git clone <repository-url>
 
-Install the dependecies
-'''bash
+Install the dependencies
+```bash
 npm install
-
+```
 Run the development server
-'''bsh
+```bash
 npm run dev
-
+```
 Build the Production
-'''bash
+```bash
 npm run build
-
+```
 # Product Decision #
 
 I decided to add a **Scenario Simulator** as the primary product feature.
@@ -160,15 +169,12 @@ Remaining drawdown shows how much room is left before violating the account's ri
 
 3. If you had another day to improve this dashboard, what would You add?
 
-I would focus on features that improve decision-making rather than simply adding more statistics.
-
-Some improvements would include:
+If I had another day, I would focus on making dashboard more useful for active traders by adding:
 
 - Performance grouped by trading asset
 - Trade journal with notes
 - Best and worst trading days
 - Monthly performance analytics
-- CSV/PDF export
 - Persistent theme preference
 - Live trading API integration
 
@@ -190,4 +196,4 @@ Some improvements would include:
 
 Kalpana Kumari
 
-Built As Part of the **TrdaerScape Full-Satck Developer Assignment**.
+Built As Part of the **TrdaerScape Full Satck Developer Assignment**.
