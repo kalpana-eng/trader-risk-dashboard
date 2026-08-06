@@ -7,7 +7,7 @@ The dashboard calculates all metrics directly from the trade data instead of rel
 All trading metrics are calculated dynamically from the provided trade dataset. No calculated values are hardcoded.
 
 # Live Demo #
-https://trader-risk-dashboard-five.vercel.app/
+https://trader-risk-dashboard-five.vercel.app
 
 # Features #
 
