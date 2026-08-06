@@ -130,9 +130,9 @@ This provides a quick visual comparison of trading performance.
 
 Clone The repository
 
-'''bash
+```bash
 git clone <repository-url>
-
+```
 Install the dependencies
 ```bash
 npm install
